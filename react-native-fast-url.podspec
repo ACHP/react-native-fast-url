@@ -21,9 +21,9 @@ Pod::Spec.new do |s|
   s.dependency "React-Core"
   s.dependency "React-jsi"
 
-  s.compiler_flags = folly_compiler_flags
+  s.compiler_flags = "#{folly_compiler_flags} -DADA_INCLUDE_URL_PATTERN=0"
   s.pod_target_xcconfig = {
     "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
-    "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
+    "CLANG_CXX_LANGUAGE_STANDARD" => "c++20"
   }
 end
