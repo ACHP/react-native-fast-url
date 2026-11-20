@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "13.4" }
   s.source       = { :git => "https://github.com/KusStar/react-native-fast-url.git", :tag => "#{s.version}" }
 
-  s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{h,cpp}"
+  s.source_files = "ios/**/*.{h,m,mm}", "cpp/{fast-url,URLHostObjects,utils}.{h,cpp}"
   s.requires_arc = true
 
   s.dependency "React-Core"
@@ -24,6 +24,12 @@ Pod::Spec.new do |s|
   s.compiler_flags = "#{folly_compiler_flags} -DADA_INCLUDE_URL_PATTERN=0"
   s.pod_target_xcconfig = {
     "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
-    "CLANG_CXX_LANGUAGE_STANDARD" => "c++20"
+    "CLANG_CXX_LANGUAGE_STANDARD" => "c++20",
+    "FASTURL_ADA_OPTIMIZATION[config=Release]" => "-O2"
   }
+
+  s.subspec "Ada" do |ada|
+    ada.source_files = "cpp/ada.{h,cpp}"
+    ada.compiler_flags = "$(FASTURL_ADA_OPTIMIZATION)"
+  end
 end
