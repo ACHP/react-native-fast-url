@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = {
     "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\" \"$(PODS_ROOT)/Headers/Private/React-Core\"",
     "CLANG_CXX_LANGUAGE_STANDARD" => "c++20",
-    "FASTURL_ADA_OPTIMIZATION[config=Release]" => "-O2"
+    "FASTURL_ADA_OPTIMIZATION[config=Release]" => "-O3"
   }
 
   s.subspec "Ada" do |ada|
