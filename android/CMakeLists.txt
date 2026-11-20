@@ -24,6 +24,10 @@ find_package(fbjni REQUIRED CONFIG)
 
 target_link_libraries(${PACKAGE_NAME} fbjni::fbjni ReactAndroid::jsi android)
 
+set(FAST_URL_EXPORTS "${CMAKE_CURRENT_SOURCE_DIR}/fast-url.exports")
+target_link_options(${PACKAGE_NAME} PRIVATE "LINKER:--version-script,${FAST_URL_EXPORTS}")
+set_property(TARGET ${PACKAGE_NAME} APPEND PROPERTY LINK_DEPENDS "${FAST_URL_EXPORTS}")
+
 # Enable Android 16kb native library alignment
 if(CMAKE_ANDROID_NDK_VERSION VERSION_LESS "27")
     target_link_options(${PACKAGE_NAME} PRIVATE "-Wl,-z,max-page-size=16384")
